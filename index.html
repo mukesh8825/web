@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRD Master Research & Development | Secure Portal</title>
+    <style>
+        :root {
+            --mrd-navy: #0A1C3F;
+            --mrd-blue: #2c3e50;
+            --dark-bg: #020617;
+            --whatsapp-green: #25D366;
+            --secure-green: #166534;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: #333;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .main-container {
+            max-width: 950px;
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.4);
+            position: relative;
+        }
+        .header { text-align: center; border-bottom: 4px solid var(--mrd-navy); margin-bottom: 45px; padding-bottom: 15px; }
+        .header h1 { color: var(--mrd-navy); margin: 0; font-size: 40px; font-weight: 800; }
+
+        /* Card Section */
+        .card-wrapper { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+        .id-card { 
+            width: 360px; height: 580px; background: #fff; border: 1px solid #ddd; 
+            border-radius: 18px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            overflow: hidden; position: relative; 
+        }
+        .card-header-label { background: var(--mrd-navy); color: white; text-align: center; padding: 7px; font-size: 13px; font-weight: bold; }
+
+        /* Front Side Styling */
+        .front-body { padding: 25px; text-align: center; }
+        .profile-row { display: flex; align-items: center; margin: 25px 0; text-align: left; border-bottom: 2px solid #f1f5f9; padding-bottom: 18px; }
+        .photo-circle { width: 95px; height: 95px; border-radius: 50%; border: 4px solid var(--mrd-navy); background: #f0f4f8; display: flex; align-items: center; justify-content: center; font-size: 50px; overflow: hidden; }
+        .emp-data { flex: 1; padding-left: 18px; font-size: 14px; }
+        .login-section { background: #f1f5f9; padding: 15px; border-radius: 10px; text-align: left; margin-top: 15px; border: 1px solid #e2e8f0; }
+        .secure-input { border: 1px solid #cbd5e1; padding: 8px; width: 90%; background: white; margin-top: 5px; font-size: 13px; border-radius: 4px; }
+
+        /* Safety Section with QR */
+        .rules-row-front { display: flex; align-items: center; text-align: left; margin-top: 20px; gap: 15px; border-top: 1px solid #eee; padding-top: 15px; }
+        .rules-qr-box { width: 70px; height: 70px; background: #000; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold; }
+
+        /* Back Side Styling */
+        .back-body { padding: 30px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .qr-box { margin-top: 35px; border: 3px solid #eee; padding: 12px; border-radius: 18px; width: 210px; height: 210px; background: #fff; }
+        .qr-img { width: 100%; height: 100%; background: #000; color: white; display: flex; align-items: center; justify-content: center; font-size: 35px; font-weight: bold; }
+        .scan-msg { margin-top: 55px; font-size: 28px; font-weight: 800; color: var(--mrd-navy); line-height: 1.3; }
+
+        /* Detailed Points with Bilingual support */
+        .details-section { background: #f8fafc; padding: 35px; border-radius: 18px; border: 1px solid #e2e8f0; margin-top: 20px; width: 100%; box-sizing: border-box; }
+        .point { margin-bottom: 28px; border-left: 6px solid var(--mrd-navy); padding-left: 22px; }
+        .point h4 { margin: 0 0 8px 0; color: var(--mrd-navy); font-size: 19px; }
+        .desc-en { display: block; color: #475569; font-size: 14px; margin-bottom: 4px; font-style: italic; }
+        .desc-hi { display: block; color: #1e293b; font-size: 16px; font-weight: 600; }
+
+        /* Contact Section FIXED (Perfectly Centered) */
+        .contact-section { 
+            margin: 45px auto 0 auto; 
+            text-align: center; 
+            padding: 30px; 
+            background: #fff; 
+            border-radius: 18px; 
+            border: 2px solid #eee; 
+            width: 100%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .contact-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+            margin-top: 20px; 
+            width: 100%;
+        }
+        .contact-btn { 
+            border: none; 
+            text-decoration: none; 
+            padding: 14px 28px; 
+            border-radius: 8px; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 15px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+        .gmail-btn { background: #db4437; }
+        .wa-btn { background: var(--whatsapp-green); }
+        .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+
+        .footer-banner { width: 100%; text-align: center; background: #dcfce7; color: var(--secure-green); padding: 18px; margin-top: 40px; font-weight: bold; border-radius: 12px; border: 2px solid #22c55e; font-size: 17px; box-sizing: border-box;}
+    </style>
+
+    <script>
+        /* --- EXTREME SECURITY SCRIPT --- */
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false;
+            if (e.ctrlKey && e.keyCode == 85) return false;
+        };
+
+        /* --- BASE64 DATA --- */
+        const _m = "bW1rMzM3Mjk3QGdtYWlsLmNvbQ=="; // mmk337297@gmail.com
+        const _w = "NjM2Mzg0MTQ5MQ=="; // 6363841491
+
+        function openGM() { window.location.href = "mailto:" + atob(_m); }
+        function openWA() { window.location.href = "https://wa.me/91" + atob(_w); }
+    </script>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="header">
+        <h1>MRD</h1>
+        <p style="font-weight:800; letter-spacing:3px; color:#64748b; text-transform: uppercase;">Master Research & Development</p>
+    </div>
+
+    <div class="card-wrapper">
+        <div class="id-card">
+            <div class="card-header-label">FRONT SIDE (सामने का भाग)</div>
+            <div class="front-body">
+                <div style="font-size:30px; font-weight:900; color:var(--mrd-navy);">MRD</div>
+                <div style="font-weight:800; margin-bottom:20px;">स्मार्ट आईडी <small style="display:block; color:#64748b;">स्टेटस डैशबोर्ड</small></div>
+                
+                <div class="profile-row">
+                    <div class="photo-circle">👤</div>
+                    <div class="emp-data">
+                        <b>नाम:</b> मुकेश कुमार<br>
+                        <b>पद:</b> CEO (मुख्य कार्यकारी अधिकारी)<br>
+                        <b>ID:</b> MRD-MK-001
+                    </div>
+                </div>
+
+                <div class="login-section">
+                    <b style="font-size:13px; color:var(--mrd-navy);">सुरक्षित लॉगिन (Secure Login)</b>
+                    <div class="secure-input">******** <span style="float:right;">🔑</span></div>
+                    <small style="font-size:10px; color:#64748b; margin-top:5px; display:block;">पासवर्ड दर्ज करें पूरी स्टेटस देखे</small>
+                </div>
+
+                <div class="rules-row-front">
+                    <div class="rules-qr-box">QR<br>DETAILS</div>
+                    <div style="text-align:left; font-size:12px;">
+                        <b style="color:var(--mrd-navy);">काम का तरीका:</b><br>
+                        मशीन शुरू करने से पहले सेफ्टी गियर्स पहनें।
+                    </div>
+                </div>
+
+                <div style="position:absolute; right:20px; bottom:130px; text-align:center;">
+                    <span style="font-size:25px;">🔥</span><br>
+                    <b style="font-size:12px;">बर्निंग</b>
+                </div>
+            </div>
+        </div>
+
+        <div class="id-card">
+            <div class="card-header-label">BACK SIDE (पीछे का भाग)</div>
+            <div class="back-body">
+                <div style="align-self:flex-end; font-weight:900; color:var(--mrd-navy); font-size:24px;">MRD</div>
+                <div class="qr-box">
+                    <div class="qr-img">QR</div>
+                </div>
+                <div style="display:flex; justify-content:space-between; width:100%; margin-top:25px;">
+                    <div style="font-size:11px;">☁️<br><b>समस्या<br>रिपोर्ट करें</b></div>
+                    <div style="font-size:11px;">🔐<br><b>एन्क्रिप्टेड<br>डेटा</b></div>
+                </div>
+                <div class="scan-msg">
+                    कार्ड स्कैन करो<br>लाइव अटेंडेंस देखो
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="details-section">
+        <h3 style="text-align:center; color:var(--mrd-navy); margin-bottom:35px; font-size:24px; text-transform:uppercase;">System Features Details</h3>
+        
+        <div class="point">
+            <h4>1. Advanced QR Code Integration</h4>
+            <span class="desc-en">High-density QR links the physical card directly to the secure MRD database.</span>
+            <span class="desc-hi">हाई-डेनसिटी क्यूआर भौतिक कार्ड को सुरक्षित MRD डेटाबेस से जोड़ता है।</span>
+        </div>
+
+        <div class="point">
+            <h4>2. Secured Access (ID & Password)</h4>
+            <span class="desc-en">Full profile and work status are visible only after entering correct credentials.</span>
+            <span class="desc-hi">सही यूजर आईडी और पासवर्ड डालने के बाद ही पूरी प्रोफाइल और स्थिति दिखाई देती है।</span>
+        </div>
+
+        <div class="point">
+            <h4>3. Live Attendance Monitoring</h4>
+            <span class="desc-en">Scanning the back QR instantly marks real-time attendance on the dashboard.</span>
+            <span class="desc-hi">पीछे के क्यूआर को स्कैन करने से डैशबोर्ड पर लाइव अटेंडेंस दर्ज होती है।</span>
+        </div>
+
+        <div class="point">
+            <h4>4. Military-Grade Security (AES-256)</h4>
+            <span class="desc-en">Data is 100% protected with AES-256 encryption against leaks.</span>
+            <span class="desc-hi">डेटा AES-256 एन्क्रिप्शन के साथ 100% सुरक्षित है।</span>
+        </div>
+
+        <div class="point">
+            <h4>5. Machine & Safety Compliance</h4>
+            <span class="desc-en">Monitors machine "Burning" status and safety compliance rules.</span>
+            <span class="desc-hi">मशीनों के "बर्निंग" स्टेटस और सेफ्टी नियमों की निगरानी करता है।</span>
+        </div>
+        
+        <div class="point">
+            <h5>6. NoticeMsg(Notice By Company)</h5>
+            <span class="desc-en">If the company receives any information, it will be delivered to your card.</span>
+            <span class="desc-hi"> अगर कंपनी में कोई सूचना मिलता है तो उसे आपके कार्ड पर पहुंचा दिया जाएगा </span>
+        </div>
+
+    </div>
+
+    <div class="contact-section">
+        <div style="color: var(--mrd-navy); font-weight: 800; font-size: 22px;">संपर्क के लिए हमसे जुड़ें | Contact Us</div>
+        <p style="font-size: 14px; color: #64748b; margin-top: 5px;">For any inquiries or support, please reach out via:</p>
+        <div class="contact-links">
+            <button onclick="openGM()" class="contact-btn gmail-btn">Gmail पर संपर्क करें</button>
+            <button onclick="openWA()" class="contact-btn wa-btn">WhatsApp पर मैसेज करें</button>
+        </div>
+    </div>
+
+    <div class="footer-banner">
+        ✔ 100% SECURE SYSTEM | इंस्पेक्ट एलिमेंट और F12 पूरी तरह ब्लॉक है
+    </div>
+</div>
+
+</body>
+</html>
